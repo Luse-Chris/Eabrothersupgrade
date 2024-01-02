@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="report.paperformat" id="paperformat_owner_equipment_report">
+            <field name="name">paperformat.owner_equipment.report</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">20</field>
+            <field name="margin_right">5</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report id="owner_equipment_list_report"
+                model="equipment.owner"
+                string="Owner Equipment Summary Report"
+                report_type="qweb-pdf"
+                name="ea_equipment_tracking.report_owner_equipment"
+                file="ea_equipment_tracking.report_owner_equipment"
+                paperformat="paperformat_owner_equipment_report"/>
+
+        <template id="report_owner_equipment">
+            <t t-call="web.html_container">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+
+                            <div>
+                                <span style="font-size: 14px;"><strong>List of Equipment Owned</strong></span>
+                            </div>
+
+                            <br/>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th><strong>Equipment Owner</strong></th>
+                                        <th><strong>Mobile #</strong></th>
+                                        <th><strong>Landline #</strong></th>
+                                        <th><strong>Email Address</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span t-field="docs.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="docs.mobile"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="docs.phone"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="docs.email"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">S/n </th>
+                                        <th class="text-left">Serial Number</th>
+                                        <th class="text-left">Alternative ID</th>
+                                        <th class="text-left">Category</th>
+                                        <th class="text-left">Make</th>
+                                        <th class="text-left">Model</th>
+                                        <th class="text-left">Capacity</th>
+                                        <th class="text-left">Location</th>
+                                        <th class="text-left">Place Installed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.equipment_ids" t-as="line">
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="line_index + 1" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="line.name" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="line.tag_id_number" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="line.category_id.name" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap">
+                                            <span t-esc="line.make"/>
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="line.model" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="line.capacity"/>
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="line.location.name" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="line.where_installed.name" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </t>
+
+            </t>
+        </template>
+
+    </data>
+</odoo>

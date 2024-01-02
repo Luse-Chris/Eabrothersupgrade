@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="customer_tickets_list_excel_report"
+                model="maintenance.ticket"
+                string="Maintenance Tickets List"
+                report_type="xlsx"
+                name="ea_equipment_tracking.report_customer_tickets_list"
+                file="ea_equipment_tracking.report_customer_tickets_list.xlsx"
+                attachment_use="False"/>
+    </data>
+</odoo>

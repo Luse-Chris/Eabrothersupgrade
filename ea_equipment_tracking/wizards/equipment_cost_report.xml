@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+<!--        Wizard form view-->
+        <record model="ir.ui.view" id="equipment_cost_report_wizard_form">
+            <field name="name">Equipment Cost Report</field>
+            <field name="model">equipment_cost.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                    <field name="equipment_id"/>
+                </group>
+                <group col="4">
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Print" type="object" default_focus="1" class="oe_highlight" />
+                    or
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+                </form>
+            </field>
+        </record>
+
+<!--        Team-wise tickets report menu action-->
+        <record model="ir.actions.act_window" id="equipment_cost_report_action">
+            <field name="name">Generate Equipment Cost Report</field>
+            <field name="res_model">equipment_cost.wizard</field>
+            <!-- field name="view_type">form</field -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+<!--        Team Tickets Report Menu-->
+        <menuitem name="Equipment Cost"
+                  id="equipment_cost_menu"
+                  parent="equipment_tracking_pdf_reports_menu"
+                  sequence="1"
+                  action="equipment_cost_report_action"/>
+
+    </data>
+</odoo>

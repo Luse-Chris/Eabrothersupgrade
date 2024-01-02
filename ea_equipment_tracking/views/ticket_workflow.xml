@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="workflow" id="wkf_maintenance_ticket">
+            <field name="name">wkf_maintenance_ticket</field>
+            <field name="osv">maintenance.ticket</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="new">
+            <field name="name">New</field>
+            <field name="wkf_id" ref="wkf_maintenance_ticket"/>
+            <field name="flow_start" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_new()</field>
+        </record>
+
+        <record model="workflow.activity" id="approved">
+            <field name="name">Approved</field>
+            <field name="wkf_id" ref="wkf_maintenance_ticket"/>
+            <field name="kind">function</field>
+            <field name="action">action_approved()</field>
+        </record>
+
+        <record model="workflow.activity" id="assigned">
+            <field name="name">Assigned</field>
+            <field name="wkf_id" ref="wkf_maintenance_ticket"/>
+            <field name="kind">function</field>
+            <field name="action_id" ref="send_assigned_ticket_email_action"/>
+            <field name="action">action_assigned()</field>
+        </record>
+
+        <record model="workflow.activity" id="in_progress">
+            <field name="name">In Progress</field>
+            <field name="wkf_id" ref="wkf_maintenance_ticket"/>
+            <field name="kind">function</field>
+            <field name="action">action_in_progress()</field>
+        </record>
+
+        <record model="workflow.activity" id="resolved">
+            <field name="name">Resolved</field>
+            <field name="wkf_id" ref="wkf_maintenance_ticket"/>
+            <field name="kind">function</field>
+            <field name="action">action_resolved()</field>
+        </record>
+
+        <record model="workflow.activity" id="closed">
+            <field name="name">Closed</field>
+            <field name="wkf_id" ref="wkf_maintenance_ticket"/>
+            <field name="kind">function</field>
+            <field name="action">action_closed()</field>
+        </record>
+
+        <record model="workflow.activity" id="cancelled">
+            <field name="name">Cancelled</field>
+            <field name="wkf_id" ref="wkf_maintenance_ticket"/>
+            <field name="kind">function</field>
+            <field name="action">action_cancelled()</field>
+        </record>
+
+        <record model="workflow.transition" id="maintenance_ticket_new_to_approved">
+            <field name="act_from" ref="new"/>
+            <field name="act_to" ref="approved"/>
+            <field name="signal">approve</field>
+        </record>
+
+        <record model="workflow.transition" id="maintenance_ticket_new_to_cancelled">
+            <field name="act_from" ref="new"/>
+            <field name="act_to" ref="cancelled"/>
+            <field name="signal">cancel</field>
+        </record>
+
+        <record model="workflow.transition" id="maintenance_ticket_approved_to_assigned">
+            <field name="act_from" ref="approved"/>
+            <field name="act_to" ref="assigned"/>
+            <field name="signal">assign</field>
+        </record>
+
+        <record model="workflow.transition" id="maintenance_ticket_assigned_to_in_progress">
+            <field name="act_from" ref="assigned"/>
+            <field name="act_to" ref="in_progress"/>
+            <field name="signal">in_progress</field>
+        </record>
+
+        <record model="workflow.transition" id="maintenance_ticket_in_progress_to_resolved">
+            <field name="act_from" ref="in_progress"/>
+            <field name="act_to" ref="resolved"/>
+            <field name="signal">resolved</field>
+        </record>
+
+        <record model="workflow.transition" id="maintenance_ticket_resolved_to_closed">
+            <field name="act_from" ref="resolved"/>
+            <field name="act_to" ref="closed"/>
+            <field name="signal">close</field>
+        </record>
+
+    </data>
+</odoo>

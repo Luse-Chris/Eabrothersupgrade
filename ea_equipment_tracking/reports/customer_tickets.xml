@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="report.paperformat" id="paperformat_customer_tickets_report">
+            <field name="name">paperformat_customer_tickets_report</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">20</field>
+            <field name="margin_right">5</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report id="closed_customer_tickets_report"
+                model="maintenance.ticket"
+                string="Customer Maintenance Tickets Report"
+                report_type="qweb-pdf"
+                name="ea_equipment_tracking.report_customer_tickets"
+                file="ea_equipment_tracking.report_customer_tickets"
+                paperformat="paperformat_customer_tickets_report"
+                menu="False"/>
+
+        <template id="report_customer_tickets">
+            <t t-call="web.html_container">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+
+                            <div>
+                                <span style="font-size: 14px;"><strong>Closed Maintenance Tickets In a Given Period</strong></span>
+                            </div>
+
+                            <br/>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th><strong>Equipment Owner</strong></th>
+                                        <th><strong>Date From</strong></th>
+                                        <th><strong>Date To</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <t t-set="info" t-value="get_header_info" />
+                                        <td>
+                                            <span t-esc="info['equipment_owner']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="info['date_from']" t-options="{'widget': 'date'}"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="info['date_to']" t-options="{'widget': 'date'}"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <br/>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">S/n</th>
+                                        <th class="text-left">Ticket #</th>
+                                        <th class="text-left">Subject</th>
+                                        <th class="text-left">Equipment</th>
+                                        <th class="text-left">Category</th>
+                                        <th class="text-left">Reported By</th>
+                                        <th class="text-left">Date Reported</th>
+                                        <th class="text-left">Date Closed</th>
+                                        <th class="text-left">Summary Resolution</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="tickets" t-as="a">
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="a_index + 1" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="a.name" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="a.subject" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap">
+                                            <span t-esc="a.serial_number"/>
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="a.category_id.name" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="a.reported_by_name" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="a.reporting_date" t-options="{'widget': 'date'}" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="a.close_date" t-options="{'widget': 'date'}" />
+                                        </td>
+                                        <td class="text-left" style="white-space: text-nowrap;">
+                                            <span t-esc="a.summary_resolution" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </t>
+        
+            </t>
+        </template>
+
+    </data>
+</odoo>

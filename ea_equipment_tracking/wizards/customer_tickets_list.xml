@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+<!--        Wizard Form view-->
+        <record model="ir.ui.view" id="customer_tickets_list_report_wizard_form">
+            <field name="name">customer_tickets_list_report_wizard_form</field>
+            <field name="model">customer_tickets_list.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="equipment_owner_id"/>
+                    </group>
+                    <group col="4">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <footer>
+                        <button name="generate_excel_report" string="Excel Report" type="object" default_focus="1" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+<!--        Wizard Action-->
+        <record model="ir.actions.act_window" id="customer_tickets_list_report_menu_action">
+            <field name="name">Generate Excel Report of Customer's Maintenance Tickets</field>
+            <field name="res_model">customer_tickets_list.wizard</field>
+            <!-- field name="view_type">form</field -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Tickets Details excel report menu  -->
+        <menuitem name="Tickets Details"
+                  id="ticket_details_report_menu"
+                  parent="equipment_tracking_excel_reports_menu"
+                  sequence="2"
+                  action="customer_tickets_list_report_menu_action"/>
+
+    </data>
+</odoo>
