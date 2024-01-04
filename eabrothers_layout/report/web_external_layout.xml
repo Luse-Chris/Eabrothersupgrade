@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_external_layout_boxed_inherit" inherit_id="web.external_layout_boxed">
+        <xpath expr="//div[hasclass('o_boxed_header')]" position="replace">
+            <div t-if="company.document_header">
+                <img  class="img-fluid" t-att-src="image_data_uri(company.document_header)"  alt="Header" />
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('text-center')]" position="replace">
+            <div class="mt-2" t-if="company.document_footer">
+                <img  class="img-fluid" t-att-src="image_data_uri(company.document_footer)" alt="Footer" />
+            </div>
+        </xpath>
+    </template>
+</odoo>

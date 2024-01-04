@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- TODO remove on v14. We keep this view just in case someone has inherit from it and also so that update is not broken -->
+    <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//tr[hasclass('o_total')]" position="replace">
+        
+            <tr class="border-black">
+                <td style="background-color: #fff !important;">
+                    <strong>Totals</strong>
+                </td>
+                <td class="text-right" style="background-color: white !important;">
+                    <span class="text-nowrap" t-field="o.amount_total" style="color: #000 !important;" />
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+</odoo>
