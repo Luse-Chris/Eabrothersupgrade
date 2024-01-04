@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="equipment_technical_report_excel_report"
+                model="maintenance.ticket"
+                string="Technical Report"
+                report_type="xlsx"
+                name="ea_equipment_tracking.report_equipment_technical_xlsx"
+                file="ea_equipment_tracking.report_equipment_technical_xlsx.xlsx"
+                menu="False"
+                attachment_use="False"/>
+    </data>
+</odoo>

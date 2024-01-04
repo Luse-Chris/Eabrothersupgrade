@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="preventive_maintenance_round_excel_report"
+                model="preventive.maintenance"
+                string="Preventive Maintenance Round"
+                report_type="xlsx"
+                name="ea_equipment_tracking.report_preventive_maintenance"
+                file="ea_equipment_tracking.report_preventive_maintenance_round.xlsx"
+                menu="False"
+                attachment_use="False"/>
+    </data>
+</odoo>

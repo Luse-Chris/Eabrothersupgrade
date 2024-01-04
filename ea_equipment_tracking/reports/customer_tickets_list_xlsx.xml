@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="customer_tickets_list_excel_report" model="ir.actions.report">
+            <field name="name">Maintenance Tickets List</field>
+            <field name="model">maintenance.ticket</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">ea_equipment_tracking.report_customer_tickets_list</field>
+            <field name="report_file">ea_equipment_tracking.report_customer_tickets_list.xlsx</field>
+            <field name="binding_model_id" ref="ea_equipment_tracking.model_maintenance_ticket"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!--<report id="customer_tickets_list_excel_report"
+                model="maintenance.ticket"
+                string="Maintenance Tickets List"
+                report_type="xlsx"
+                name="ea_equipment_tracking.report_customer_tickets_list"
+                file="ea_equipment_tracking.report_customer_tickets_list.xlsx"
+                attachment_use="False"/>-->
+    </data>
+</odoo>
