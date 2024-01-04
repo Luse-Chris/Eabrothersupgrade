@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+         <template id = "eabcl_report_header" inherit_id = "web.external_layout_boxed">
+            <xpath expr="//div[@class='o_boxed_header']/div[@class='row mb8']/div[@class='col-6 ml5 mb4']" position="replace">
+                 	<div class="col-3">
+
+                           <img t-if="company.document_header_png" t-att-src="'data:image/png;base64,%s' % company.document_header_png" style="max-height: 50px;"/>
+
+                      </div>
+            </xpath>
+
+<!--             <xpath expr="//div[@class='text-center']/ul[@class='list-inline']" position="replace">-->
+<!--                 	<div class="col-xs-3">-->
+
+<!--                           <img t-if="company.document_footer_png" t-att-src="'data:image/png;base64,%s' % company.document_footer_png" style="max-height: 45px;"/>-->
+
+<!--                    </div>-->
+<!--            </xpath>-->
+        </template>
+
+        <template id = "eabcl_report_header_background" inherit_id = "web.external_layout_background">   
+            <xpath expr="//div[@class='o_boxed_header']/div[@class='row mb8']/div[@class='col-6 ml5 mb4']" position="replace">
+                 	<div class="float-right" >
+
+                           <img class="float-right" t-if="company.document_header_png" t-att-src="'data:image/png;base64,%s' % company.document_header_png" style="height: auto; width: 100%;"/>
+
+                      </div>
+            </xpath>
+        </template>    
+         
+<!--
+        <template id="listing">
+          <ul>
+            <li t-foreach="objects" t-as="object">
+              <a t-attf-href="#{ root }/objects/#{ object.id }">
+                <t t-esc="object.display_name"/>
+              </a>
+            </li>
+          </ul>
+        </template>
+        <template id="object">
+          <h1><t t-esc="object.display_name"/></h1>
+          <dl>
+            <t t-foreach="object._fields" t-as="field">
+              <dt><t t-esc="field"/></dt>
+              <dd><t t-esc="object[field]"/></dd>
+            </t>
+          </dl>
+        </template>
+-->
+    </data>
+</odoo>
