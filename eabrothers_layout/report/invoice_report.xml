@@ -3,7 +3,7 @@
 
     <!-- TODO remove on v14. We keep this view just in case someone has inherit from it and also so that update is not broken -->
     <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
-        <xpath expr="//tr[hasclass('o_total')]" position="replace">
+        <!--<xpath expr="//tr[hasclass('o_total')]" position="replace">
         
             <tr class="border-black">
                 <td style="background-color: #fff !important;">
@@ -13,7 +13,7 @@
                     <span class="text-nowrap" t-field="o.amount_total" style="color: #000 !important;" />
                 </td>
             </tr>
-        </xpath>
+        </xpath>-->
     </template>
 
 </odoo>

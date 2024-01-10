@@ -29,3 +29,13 @@ class Company(models.Model):
                                         string="Company Header Image", readonly=False)
 
     # document_footer_png = fields.Binary(default=_get_footer_image, string="Company Footer Image", readonly=False)
+
+
+class BaseDocumentLayout(models.TransientModel):
+    """
+    Inherit BaseDocumentLayout to add Company fields
+    that Odoo don't have taken into account
+    """
+    _inherit = 'base.document.layout'
+    # Those following fields are required as a company to create invoice report
+    document_header_png = fields.Binary(related='company_id.document_header_png', readonly=True)

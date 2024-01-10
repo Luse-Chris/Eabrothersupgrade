@@ -1,13 +1,13 @@
 <odoo>
     <data>
          <template id = "eabcl_report_header" inherit_id = "web.external_layout_boxed">
-            <xpath expr="//div[@class='o_boxed_header']/div[@class='row mb8']/div[@class='col-6 ml5 mb4']" position="replace">
+            <!--<xpath expr="//div[@class='o_boxed_header']/div[@class='row mb8']/div[@class='col-6 text-end mb4']/div[@class='mt0 h4']" position="replace">
                  	<div class="col-3">
 
                            <img t-if="company.document_header_png" t-att-src="'data:image/png;base64,%s' % company.document_header_png" style="max-height: 50px;"/>
 
                       </div>
-            </xpath>
+            </xpath>-->
 
 <!--             <xpath expr="//div[@class='text-center']/ul[@class='list-inline']" position="replace">-->
 <!--                 	<div class="col-xs-3">-->
@@ -18,14 +18,14 @@
 <!--            </xpath>-->
         </template>
 
-        <template id = "eabcl_report_header_background" inherit_id = "web.external_layout_background">   
-            <xpath expr="//div[@class='o_boxed_header']/div[@class='row mb8']/div[@class='col-6 ml5 mb4']" position="replace">
+        <template id = "eabcl_report_header_background" inherit_id = "web.external_layout_striped">
+            <!--<xpath expr="//div[@class='o_background_header']/div[@class='float-end']" position="replace">
                  	<div class="float-right" >
 
                            <img class="float-right" t-if="company.document_header_png" t-att-src="'data:image/png;base64,%s' % company.document_header_png" style="height: auto; width: 100%;"/>
 
                       </div>
-            </xpath>
+            </xpath>-->
         </template>    
          
 <!--
